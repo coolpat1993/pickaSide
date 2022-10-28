@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
+import Buttons from "./components/Buttons";
+import Header from "./components/Header";
+import Players from "./components/Players";
+import Timer from "./components/Timer";
 
 function App() {
+  const [choice, setChoice] = useState("none");
+  const [disabled, setDisabled] = useState(false);
+  const [timer, setTimer] = useState(3);
+  const [winner, setWinner] = useState("none");
+  const [truePlayers, setTruePlayers] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Timer
+        setChoice={setChoice}
+        choice={choice}
+        setDisabled={setDisabled}
+        timer={timer}
+        setTimer={setTimer}
+        winner={winner}
+        setWinner={setWinner}
+        truePlayers={truePlayers}
+        setTruePlayers={setTruePlayers}
+      />
+      <br></br>
+      <Buttons
+        choice={choice}
+        setChoice={setChoice}
+        disabled={disabled}
+        timer={timer}
+        winner={winner}
+      />
+      <Players
+        choice={choice}
+        timer={timer}
+        winner={winner}
+        truePlayers={truePlayers}
+        setTruePlayers={setTruePlayers}
+      />
+    </>
   );
 }
 
